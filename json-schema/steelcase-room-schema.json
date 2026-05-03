@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/steelcase/main/json-schema/steelcase-room-schema.json",
+  "title": "Steelcase Room",
+  "description": "Schema for a Steelcase RoomWizard managed conference room.",
+  "type": "object",
+  "properties": {
+    "room_id": {
+      "type": "string",
+      "description": "Unique identifier for the room."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the room."
+    },
+    "building": {
+      "type": ["string", "null"],
+      "description": "Building where the room is located."
+    },
+    "floor": {
+      "type": ["string", "null"],
+      "description": "Floor where the room is located."
+    },
+    "capacity": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "description": "Maximum seating capacity of the room."
+    },
+    "is_available": {
+      "type": ["boolean", "null"],
+      "description": "Whether the room is currently available."
+    },
+    "equipment": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of available equipment in the room.",
+      "examples": [
+        ["projector", "whiteboard", "video conferencing", "phone"]
+      ]
+    },
+    "email_address": {
+      "type": ["string", "null"],
+      "format": "email",
+      "description": "Room calendar email address for direct calendar invites."
+    },
+    "roomwizard_id": {
+      "type": ["string", "null"],
+      "description": "Identifier of the RoomWizard device assigned to this room."
+    }
+  },
+  "required": ["room_id", "name"]
+}

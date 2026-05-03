@@ -1,0 +1,139 @@
+name: Steelcase Vocabulary
+description: >-
+  Domain vocabulary for Steelcase workplace technology APIs covering room
+  scheduling, conference room management, and facility operations.
+version: '1.0.0'
+created: '2026-05-02'
+modified: '2026-05-02'
+
+terms:
+  - term: RoomWizard
+    definition: >-
+      Steelcase's conference room scheduling display system. A single-board
+      computer based display device installed outside meeting rooms to show
+      real-time availability and allow ad-hoc bookings.
+    tags:
+      - Product
+      - Hardware
+      - Scheduling
+
+  - term: Booking
+    definition: >-
+      A confirmed reservation of a conference room for a specific time slot.
+      Bookings are synchronized with enterprise calendaring systems.
+    synonyms:
+      - Reservation
+      - Meeting
+    tags:
+      - Scheduling
+      - Core
+
+  - term: Room Availability
+    definition: >-
+      The current and future free/busy status of a conference room, showing
+      which time slots are open for booking and which are already reserved.
+    tags:
+      - Scheduling
+      - Real-Time
+
+  - term: Calendar Source
+    definition: >-
+      The enterprise calendaring system that a RoomWizard booking is
+      synchronized with. Supported sources: Microsoft Exchange, Office 365,
+      and Google Calendar.
+    tags:
+      - Integration
+      - Calendaring
+
+  - term: Connector
+    definition: >-
+      The RoomWizard Connector software service that bridges the RoomWizard
+      API with enterprise calendaring systems. Hosted on a local server and
+      accessible via HTTPS.
+    tags:
+      - Integration
+      - Infrastructure
+
+  - term: Organizer
+    definition: >-
+      The person who created a meeting booking, identified by name or email
+      address. Typically the account whose calendar the room is reserved on.
+    tags:
+      - People
+      - Scheduling
+
+  - term: Capacity
+    definition: >-
+      The maximum number of people a conference room can accommodate.
+      Used to filter rooms when searching for available meeting spaces.
+    tags:
+      - Rooms
+      - Search
+
+  - term: Equipment
+    definition: >-
+      Technology and facilities available in a conference room, such as
+      projectors, whiteboards, video conferencing systems, and phones.
+    synonyms:
+      - Amenities
+      - Facilities
+    tags:
+      - Rooms
+      - Search
+
+  - term: Busy Slot
+    definition: >-
+      A time period within a queried availability window during which a
+      room is already reserved and unavailable for new bookings.
+    tags:
+      - Scheduling
+      - Availability
+
+  - term: Snake Case
+    definition: >-
+      The naming convention used for all API property names in the Steelcase
+      RoomWizard API (e.g., room_id, start_time, booking_id).
+    tags:
+      - API
+      - Conventions
+
+  - term: ISO 8601
+    definition: >-
+      The international date and time format standard used for all date-time
+      values in the RoomWizard API (e.g., 2026-05-02T09:00:00-05:00).
+    tags:
+      - API
+      - Conventions
+      - Time
+
+  - term: Room Calendar Email
+    definition: >-
+      The email address of a room's calendar resource, which allows direct
+      calendar invites to book the room without using the API.
+    tags:
+      - Rooms
+      - Calendaring
+
+categories:
+  - name: Hardware
+    terms:
+      - RoomWizard
+  - name: Scheduling
+    terms:
+      - Booking
+      - Room Availability
+      - Busy Slot
+      - Organizer
+      - Room Calendar Email
+  - name: Rooms
+    terms:
+      - Capacity
+      - Equipment
+  - name: Integration
+    terms:
+      - Calendar Source
+      - Connector
+  - name: API Conventions
+    terms:
+      - Snake Case
+      - ISO 8601

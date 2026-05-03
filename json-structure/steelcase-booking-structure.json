@@ -1,0 +1,18 @@
+{
+  "name": "Booking",
+  "description": "A Steelcase RoomWizard conference room booking.",
+  "fields": [
+    { "name": "booking_id", "type": "string", "required": true, "description": "Unique booking identifier." },
+    { "name": "room_id", "type": "string", "required": true, "description": "Room identifier." },
+    { "name": "room_name", "type": "string", "required": false, "description": "Room display name." },
+    { "name": "subject", "type": "string", "required": true, "description": "Meeting subject/title." },
+    { "name": "organizer", "type": "string", "required": false, "description": "Meeting organizer." },
+    { "name": "start_time", "type": "date-time", "required": true, "description": "Meeting start time." },
+    { "name": "end_time", "type": "date-time", "required": true, "description": "Meeting end time." },
+    { "name": "attendee_count", "type": "integer", "required": false, "description": "Number of attendees." },
+    { "name": "status", "type": "string", "required": true, "enum": ["confirmed", "cancelled", "in-progress", "completed"] },
+    { "name": "calendar_source", "type": "string", "required": false, "enum": ["exchange", "office365", "google", "local"] },
+    { "name": "notes", "type": "string", "required": false, "description": "Meeting notes." },
+    { "name": "created_at", "type": "date-time", "required": false, "description": "Creation timestamp." }
+  ]
+}

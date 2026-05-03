@@ -1,0 +1,243 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Steelcase Room Scheduling"
+  description: >-
+    Room scheduling workflow capability using the Steelcase RoomWizard API
+    to manage conference room reservations, check availability, and
+    synchronize bookings with enterprise calendaring systems. Enables
+    facilities managers, employees, and workplace automation tools to
+    find available rooms, create bookings, and manage reservations
+    across an organization's conference room inventory.
+  tags:
+    - Room Scheduling
+    - Conference Rooms
+    - Facilities Management
+    - Workplace
+    - Calendaring
+    - Office 365
+    - Smart Office
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys: {}
+
+capability:
+  consumes:
+    - import: steelcase-roomwizard
+      location: ./shared/roomwizard-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: steelcase-scheduling-api
+      description: "Unified REST API for conference room scheduling and management via Steelcase RoomWizard."
+      resources:
+        - path: /v1/rooms
+          name: rooms
+          description: "Conference rooms available for booking."
+          operations:
+            - method: GET
+              name: list-rooms
+              description: "List all conference rooms filtered by building, floor, or minimum capacity."
+              call: "steelcase-roomwizard.list-rooms"
+              with:
+                building: "rest.building"
+                floor: "rest.floor"
+                min_capacity: "rest.min_capacity"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/rooms/{room_id}
+          name: room
+          description: "Individual room details."
+          operations:
+            - method: GET
+              name: get-room
+              description: "Get conference room details."
+              call: "steelcase-roomwizard.get-room"
+              with:
+                room_id: "rest.room_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/availability
+          name: availability
+          description: "Room availability across a time window."
+          operations:
+            - method: GET
+              name: get-availability
+              description: "Check room availability for a given time window."
+              call: "steelcase-roomwizard.get-room-availability"
+              with:
+                room_id: "rest.room_id"
+                start_time: "rest.start_time"
+                end_time: "rest.end_time"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/bookings
+          name: bookings
+          description: "Conference room bookings."
+          operations:
+            - method: GET
+              name: get-bookings
+              description: "Retrieve bookings for a room or date range."
+              call: "steelcase-roomwizard.get-bookings"
+              with:
+                room_id: "rest.room_id"
+                start_date: "rest.start_date"
+                end_date: "rest.end_date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-booking
+              description: "Create a new room booking."
+              call: "steelcase-roomwizard.create-booking"
+              with:
+                room_id: "rest.room_id"
+                subject: "rest.subject"
+                organizer: "rest.organizer"
+                start_time: "rest.start_time"
+                end_time: "rest.end_time"
+                attendee_count: "rest.attendee_count"
+                notes: "rest.notes"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/bookings/{booking_id}/cancel
+          name: cancel-booking
+          description: "Cancel a booking."
+          operations:
+            - method: POST
+              name: cancel-booking
+              description: "Cancel an existing booking."
+              call: "steelcase-roomwizard.cancel-booking"
+              with:
+                booking_id: "rest.booking_id"
+                reason: "rest.reason"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/status
+          name: status
+          description: "System status."
+          operations:
+            - method: GET
+              name: get-status
+              description: "Get RoomWizard connector health status."
+              call: "steelcase-roomwizard.get-connector-status"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: steelcase-scheduling-mcp
+      transport: http
+      description: "MCP server for AI-assisted conference room scheduling using Steelcase RoomWizard."
+      tools:
+        - name: list-rooms
+          description: "List conference rooms filtered by building, floor, or minimum capacity."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "steelcase-roomwizard.list-rooms"
+          with:
+            building: "tools.building"
+            floor: "tools.floor"
+            min_capacity: "tools.min_capacity"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-room-details
+          description: "Get details about a specific conference room including capacity and equipment."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "steelcase-roomwizard.get-room"
+          with:
+            room_id: "tools.room_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: check-availability
+          description: "Check which conference rooms are available during a specified time window."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "steelcase-roomwizard.get-room-availability"
+          with:
+            room_id: "tools.room_id"
+            start_time: "tools.start_time"
+            end_time: "tools.end_time"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-bookings
+          description: "List existing bookings for a room or date range."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "steelcase-roomwizard.get-bookings"
+          with:
+            room_id: "tools.room_id"
+            start_date: "tools.start_date"
+            end_date: "tools.end_date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-booking
+          description: "Create a new conference room booking for a meeting."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "steelcase-roomwizard.create-booking"
+          with:
+            room_id: "tools.room_id"
+            subject: "tools.subject"
+            organizer: "tools.organizer"
+            start_time: "tools.start_time"
+            end_time: "tools.end_time"
+            attendee_count: "tools.attendee_count"
+            notes: "tools.notes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: cancel-booking
+          description: "Cancel an existing conference room booking."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "steelcase-roomwizard.cancel-booking"
+          with:
+            booking_id: "tools.booking_id"
+            reason: "tools.reason"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-system-status
+          description: "Check the health and connectivity status of the RoomWizard system."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "steelcase-roomwizard.get-connector-status"
+          outputParameters:
+            - type: object
+              mapping: "$."

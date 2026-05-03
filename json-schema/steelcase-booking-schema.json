@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/steelcase/main/json-schema/steelcase-booking-schema.json",
+  "title": "Steelcase Room Booking",
+  "description": "Schema for a Steelcase RoomWizard conference room booking.",
+  "type": "object",
+  "properties": {
+    "booking_id": {
+      "type": "string",
+      "description": "Unique identifier for the booking."
+    },
+    "room_id": {
+      "type": "string",
+      "description": "Identifier of the booked room."
+    },
+    "room_name": {
+      "type": ["string", "null"],
+      "description": "Display name of the booked room."
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "Meeting subject or title."
+    },
+    "organizer": {
+      "type": ["string", "null"],
+      "description": "Meeting organizer name or email address."
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Meeting start time in ISO 8601 format."
+    },
+    "end_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Meeting end time in ISO 8601 format."
+    },
+    "attendee_count": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "description": "Expected number of attendees."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["confirmed", "cancelled", "in-progress", "completed"],
+      "description": "Current booking status."
+    },
+    "calendar_source": {
+      "type": ["string", "null"],
+      "enum": ["exchange", "office365", "google", "local", null],
+      "description": "The calendaring system this booking is synchronized with."
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Optional meeting notes."
+    },
+    "created_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when the booking was created."
+    }
+  },
+  "required": ["booking_id", "room_id", "subject", "start_time", "end_time", "status"]
+}

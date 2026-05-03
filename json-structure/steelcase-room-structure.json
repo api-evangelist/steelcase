@@ -1,0 +1,15 @@
+{
+  "name": "Room",
+  "description": "A Steelcase RoomWizard managed conference room.",
+  "fields": [
+    { "name": "room_id", "type": "string", "required": true, "description": "Unique room identifier." },
+    { "name": "name", "type": "string", "required": true, "description": "Room display name." },
+    { "name": "building", "type": "string", "required": false, "description": "Building name." },
+    { "name": "floor", "type": "string", "required": false, "description": "Floor location." },
+    { "name": "capacity", "type": "integer", "required": false, "description": "Maximum capacity." },
+    { "name": "is_available", "type": "boolean", "required": false, "description": "Current availability status." },
+    { "name": "equipment", "type": "array", "required": false, "description": "Available equipment list." },
+    { "name": "email_address", "type": "email", "required": false, "description": "Room calendar email." },
+    { "name": "roomwizard_id", "type": "string", "required": false, "description": "RoomWizard device ID." }
+  ]
+}

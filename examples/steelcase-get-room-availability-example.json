@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://roomwizard.local:443/api/get_availability?start_time=2026-05-05T08:00:00-05:00&end_time=2026-05-05T18:00:00-05:00"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "rooms": [
+        {
+          "room_id": "conf-101",
+          "room_name": "Conference Room A",
+          "is_available_now": true,
+          "next_available": "2026-05-05T08:00:00-05:00",
+          "busy_slots": [
+            {
+              "start_time": "2026-05-05T10:00:00-05:00",
+              "end_time": "2026-05-05T11:30:00-05:00"
+            },
+            {
+              "start_time": "2026-05-05T14:00:00-05:00",
+              "end_time": "2026-05-05T15:00:00-05:00"
+            }
+          ]
+        },
+        {
+          "room_id": "conf-202",
+          "room_name": "Innovation Lab",
+          "is_available_now": false,
+          "next_available": "2026-05-05T09:30:00-05:00",
+          "busy_slots": [
+            {
+              "start_time": "2026-05-05T08:00:00-05:00",
+              "end_time": "2026-05-05T09:30:00-05:00"
+            },
+            {
+              "start_time": "2026-05-05T13:00:00-05:00",
+              "end_time": "2026-05-05T14:00:00-05:00"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
