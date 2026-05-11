@@ -74,6 +74,10 @@ common:
     url: capabilities/room-scheduling.yaml
   - type: Vocabulary
     url: vocabulary/steelcase-vocabulary.yml
+  - type: Integrations
+    url: https://www.steelcase.com/marketplace/
+integrations:
+  - name: Steelcase
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
