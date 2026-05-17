@@ -66,7 +66,7 @@ common:
     url: json-structure/steelcase-booking-structure.json
   - type: JSONStructure
     url: json-structure/steelcase-room-structure.json
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/steelcase-context.jsonld
   - type: SpectralRules
     url: rules/steelcase-rules.yml
