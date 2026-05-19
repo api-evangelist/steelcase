@@ -1,0 +1,185 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Steelcase RoomWizard API — Rooms
+  description: 'Steelcase RoomWizard API — Rooms. 3 operations. Lead operation: Get Room Availability. Self-contained Naftiko
+    capability covering one Steelcase business surface.'
+  tags:
+  - Steelcase
+  - Rooms
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STEELCASE_API_KEY: STEELCASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: roomwizard-rooms
+    baseUri: https://{host}:{port}/api
+    description: Steelcase RoomWizard API — Rooms business capability. Self-contained, no shared references.
+    resources:
+    - name: get_availability
+      path: /get_availability
+      operations:
+      - name: getroomavailability
+        method: GET
+        description: Get Room Availability
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: room_id
+          in: query
+          type: string
+          description: Specific room ID to check. If omitted, returns all rooms.
+        - name: start_time
+          in: query
+          type: string
+          description: Start of the availability window (ISO 8601 format).
+          required: true
+        - name: end_time
+          in: query
+          type: string
+          description: End of the availability window (ISO 8601 format).
+          required: true
+    - name: get_room
+      path: /get_room
+      operations:
+      - name: getroom
+        method: GET
+        description: Get Room Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: room_id
+          in: query
+          type: string
+          description: The unique identifier of the room.
+          required: true
+    - name: get_rooms
+      path: /get_rooms
+      operations:
+      - name: listrooms
+        method: GET
+        description: List Rooms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: building
+          in: query
+          type: string
+          description: Filter rooms by building name or ID.
+        - name: floor
+          in: query
+          type: string
+          description: Filter rooms by floor.
+        - name: min_capacity
+          in: query
+          type: integer
+          description: Minimum room capacity required.
+  exposes:
+  - type: rest
+    namespace: roomwizard-rooms-rest
+    port: 8080
+    description: REST adapter for Steelcase RoomWizard API — Rooms. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/get-availability
+      name: get-availability
+      description: REST surface for get_availability.
+      operations:
+      - method: GET
+        name: getroomavailability
+        description: Get Room Availability
+        call: roomwizard-rooms.getroomavailability
+        with:
+          room_id: rest.room_id
+          start_time: rest.start_time
+          end_time: rest.end_time
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/get-room
+      name: get-room
+      description: REST surface for get_room.
+      operations:
+      - method: GET
+        name: getroom
+        description: Get Room Details
+        call: roomwizard-rooms.getroom
+        with:
+          room_id: rest.room_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/get-rooms
+      name: get-rooms
+      description: REST surface for get_rooms.
+      operations:
+      - method: GET
+        name: listrooms
+        description: List Rooms
+        call: roomwizard-rooms.listrooms
+        with:
+          building: rest.building
+          floor: rest.floor
+          min_capacity: rest.min_capacity
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: roomwizard-rooms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Steelcase RoomWizard API — Rooms. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-room-availability
+      description: Get Room Availability
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: roomwizard-rooms.getroomavailability
+      with:
+        room_id: tools.room_id
+        start_time: tools.start_time
+        end_time: tools.end_time
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-room-details
+      description: Get Room Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: roomwizard-rooms.getroom
+      with:
+        room_id: tools.room_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-rooms
+      description: List Rooms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: roomwizard-rooms.listrooms
+      with:
+        building: tools.building
+        floor: tools.floor
+        min_capacity: tools.min_capacity
+      outputParameters:
+      - type: object
+        mapping: $.
