@@ -48,6 +48,8 @@ apis:
       - FN: Steelcase Tech Support
         url: https://www.steelcase.com/techsupport/
 common:
+  - type: DomainSecurity
+    url: security/steelcase-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/steelcase
   - type: Website
@@ -72,6 +74,8 @@ common:
     url: vocabulary/steelcase-vocabulary.yml
   - type: Integrations
     url: https://www.steelcase.com/marketplace/
+  - url: https://www.steelcase.com/feed/
+    type: Blog
 integrations:
   - name: Steelcase
 maintainers:
