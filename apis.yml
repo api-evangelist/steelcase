@@ -48,6 +48,8 @@ apis:
       - FN: Steelcase Tech Support
         url: https://www.steelcase.com/techsupport/
 common:
+  - type: AgenticAccess
+    url: agentic-access/steelcase-agentic-access.yml
   - type: DomainSecurity
     url: security/steelcase-domain-security.yml
   - type: LinkedIn
