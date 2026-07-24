@@ -1,0 +1,215 @@
+openapi: 3.1.0
+info:
+  title: Steelcase RoomWizard Bookings Rooms API
+  description: The Steelcase RoomWizard API provides programmatic access to conference room scheduling and reservation management. Using HTTP GET and POST requests, developers can retrieve room bookings, create reservations, check room availability, and manage meeting information. The API supports integration with enterprise calendaring systems including Microsoft Exchange, Office 365, and Google Calendar via the RoomWizard connector. The API is hosted on the local network where the RoomWizard connector is installed.
+  version: 1.0.0
+  contact:
+    name: Steelcase Tech Support
+    url: https://www.steelcase.com/techsupport/
+  termsOfService: https://www.steelcase.com/
+servers:
+- url: https://{host}:{port}/api
+  description: RoomWizard Connector Server (local network)
+  variables:
+    host:
+      default: roomwizard.local
+      description: Hostname or IP address of the RoomWizard connector server.
+    port:
+      default: '443'
+      description: Port of the RoomWizard connector server.
+tags:
+- name: Rooms
+  description: Retrieve room information including availability, capacity, and equipment details.
+paths:
+  /get_availability:
+    get:
+      operationId: getRoomAvailability
+      summary: Get Room Availability
+      description: Retrieves the availability status of one or more rooms for a given time range, showing free/busy slots and current occupancy.
+      tags:
+      - Rooms
+      parameters:
+      - name: room_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Specific room ID to check. If omitted, returns all rooms.
+      - name: start_time
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+        description: Start of the availability window (ISO 8601 format).
+      - name: end_time
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+        description: End of the availability window (ISO 8601 format).
+      responses:
+        '200':
+          description: Room availability data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rooms:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RoomAvailability'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /get_rooms:
+    get:
+      operationId: listRooms
+      summary: List Rooms
+      description: Returns a list of all conference rooms managed by the RoomWizard system including room names, capacity, equipment, and location.
+      tags:
+      - Rooms
+      parameters:
+      - name: building
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter rooms by building name or ID.
+      - name: floor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter rooms by floor.
+      - name: min_capacity
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+        description: Minimum room capacity required.
+      responses:
+        '200':
+          description: List of rooms
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rooms:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Room'
+  /get_room:
+    get:
+      operationId: getRoom
+      summary: Get Room Details
+      description: Returns detailed information about a specific RoomWizard-managed conference room including current status, capacity, and amenities.
+      tags:
+      - Rooms
+      parameters:
+      - name: room_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The unique identifier of the room.
+      responses:
+        '200':
+          description: Room details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    RoomAvailability:
+      type: object
+      description: Availability information for a room during a time window.
+      properties:
+        room_id:
+          type: string
+          description: Room identifier.
+        room_name:
+          type: string
+          description: Room name.
+        is_available_now:
+          type: boolean
+          description: Whether the room is currently available.
+        next_available:
+          type: string
+          format: date-time
+          description: Next available time slot start.
+        busy_slots:
+          type: array
+          items:
+            type: object
+            properties:
+              start_time:
+                type: string
+                format: date-time
+              end_time:
+                type: string
+                format: date-time
+          description: List of busy time slots within the queried window.
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        error:
+          type: string
+          description: Error code.
+        message:
+          type: string
+          description: Human-readable error message.
+    Room:
+      type: object
+      description: A conference room managed by RoomWizard.
+      properties:
+        room_id:
+          type: string
+          description: Unique identifier for the room.
+        name:
+          type: string
+          description: Room name.
+        building:
+          type: string
+          description: Building where the room is located.
+        floor:
+          type: string
+          description: Floor where the room is located.
+        capacity:
+          type: integer
+          description: Maximum room capacity.
+        is_available:
+          type: boolean
+          description: Whether the room is currently available.
+        equipment:
+          type: array
+          items:
+            type: string
+          description: List of available equipment (e.g., projector, whiteboard, video conferencing).
+        email_address:
+          type: string
+          format: email
+          description: Room calendar email address for direct calendar invites.
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+externalDocs:
+  description: Steelcase Tech Support
+  url: https://www.steelcase.com/techsupport/

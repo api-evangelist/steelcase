@@ -1,0 +1,69 @@
+openapi: 3.1.0
+info:
+  title: Steelcase RoomWizard Bookings Status API
+  description: The Steelcase RoomWizard API provides programmatic access to conference room scheduling and reservation management. Using HTTP GET and POST requests, developers can retrieve room bookings, create reservations, check room availability, and manage meeting information. The API supports integration with enterprise calendaring systems including Microsoft Exchange, Office 365, and Google Calendar via the RoomWizard connector. The API is hosted on the local network where the RoomWizard connector is installed.
+  version: 1.0.0
+  contact:
+    name: Steelcase Tech Support
+    url: https://www.steelcase.com/techsupport/
+  termsOfService: https://www.steelcase.com/
+servers:
+- url: https://{host}:{port}/api
+  description: RoomWizard Connector Server (local network)
+  variables:
+    host:
+      default: roomwizard.local
+      description: Hostname or IP address of the RoomWizard connector server.
+    port:
+      default: '443'
+      description: Port of the RoomWizard connector server.
+tags:
+- name: Status
+  description: Monitor the connectivity and health status of RoomWizard devices and the connector service.
+paths:
+  /status:
+    get:
+      operationId: getConnectorStatus
+      summary: Get Connector Status
+      description: Returns the health and connectivity status of the RoomWizard connector service and all registered devices.
+      tags:
+      - Status
+      responses:
+        '200':
+          description: Connector status information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorStatus'
+components:
+  schemas:
+    ConnectorStatus:
+      type: object
+      description: Health status of the RoomWizard connector.
+      properties:
+        status:
+          type: string
+          enum:
+          - healthy
+          - degraded
+          - offline
+          description: Overall connector health status.
+        calendar_connected:
+          type: boolean
+          description: Whether the connector is connected to the calendaring system.
+        calendar_type:
+          type: string
+          description: Type of calendar system connected (exchange, office365, google).
+        device_count:
+          type: integer
+          description: Number of RoomWizard devices registered.
+        devices_online:
+          type: integer
+          description: Number of devices currently online.
+        last_sync:
+          type: string
+          format: date-time
+          description: Timestamp of the last successful calendar synchronization.
+externalDocs:
+  description: Steelcase Tech Support
+  url: https://www.steelcase.com/techsupport/

@@ -1,0 +1,257 @@
+openapi: 3.1.0
+info:
+  title: Steelcase RoomWizard Bookings API
+  description: The Steelcase RoomWizard API provides programmatic access to conference room scheduling and reservation management. Using HTTP GET and POST requests, developers can retrieve room bookings, create reservations, check room availability, and manage meeting information. The API supports integration with enterprise calendaring systems including Microsoft Exchange, Office 365, and Google Calendar via the RoomWizard connector. The API is hosted on the local network where the RoomWizard connector is installed.
+  version: 1.0.0
+  contact:
+    name: Steelcase Tech Support
+    url: https://www.steelcase.com/techsupport/
+  termsOfService: https://www.steelcase.com/
+servers:
+- url: https://{host}:{port}/api
+  description: RoomWizard Connector Server (local network)
+  variables:
+    host:
+      default: roomwizard.local
+      description: Hostname or IP address of the RoomWizard connector server.
+    port:
+      default: '443'
+      description: Port of the RoomWizard connector server.
+tags:
+- name: Bookings
+  description: Manage conference room reservations including creating, retrieving, updating, and cancelling bookings.
+paths:
+  /get_bookings:
+    get:
+      operationId: getBookings
+      summary: Get Room Bookings
+      description: Retrieves a list of bookings for a specific room or date range. Returns meeting details including subject, organizer, start time, end time, and attendee count.
+      tags:
+      - Bookings
+      parameters:
+      - name: room_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter bookings by room identifier.
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+        description: Start date for booking query (YYYY-MM-DD).
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+        description: End date for booking query (YYYY-MM-DD).
+      - name: include_cancelled
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: Whether to include cancelled bookings in the response.
+      responses:
+        '200':
+          description: List of room bookings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bookings:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Booking'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /create_booking:
+    post:
+      operationId: createBooking
+      summary: Create a Booking
+      description: Creates a new conference room booking for the specified room and time slot. The booking is synchronized with the connected calendaring system (Exchange, Office 365, or Google Calendar).
+      tags:
+      - Bookings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingCreate'
+      responses:
+        '201':
+          description: Booking created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          description: Room already booked for the requested time slot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /cancel_booking:
+    post:
+      operationId: cancelBooking
+      summary: Cancel a Booking
+      description: Cancels an existing conference room booking. The cancellation is propagated to the connected calendaring system.
+      tags:
+      - Bookings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - booking_id
+              properties:
+                booking_id:
+                  type: string
+                  description: The unique identifier of the booking to cancel.
+                reason:
+                  type: string
+                  description: Optional reason for cancellation.
+      responses:
+        '200':
+          description: Booking cancelled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Booking:
+      type: object
+      description: A conference room booking.
+      properties:
+        booking_id:
+          type: string
+          description: Unique identifier for the booking.
+        room_id:
+          type: string
+          description: ID of the booked room.
+        room_name:
+          type: string
+          description: Name of the booked room.
+        subject:
+          type: string
+          description: Meeting subject/title.
+        organizer:
+          type: string
+          description: Meeting organizer name or email.
+        start_time:
+          type: string
+          format: date-time
+          description: Meeting start time (ISO 8601).
+        end_time:
+          type: string
+          format: date-time
+          description: Meeting end time (ISO 8601).
+        attendee_count:
+          type: integer
+          description: Number of expected attendees.
+        status:
+          type: string
+          enum:
+          - confirmed
+          - cancelled
+          - in-progress
+          - completed
+          description: Current booking status.
+        calendar_source:
+          type: string
+          enum:
+          - exchange
+          - office365
+          - google
+          - local
+          description: The calendaring system this booking is synchronized with.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the booking was created.
+    BookingCreate:
+      type: object
+      required:
+      - room_id
+      - subject
+      - start_time
+      - end_time
+      description: Request body for creating a new booking.
+      properties:
+        room_id:
+          type: string
+          description: ID of the room to book.
+        subject:
+          type: string
+          description: Meeting subject/title.
+        organizer:
+          type: string
+          description: Meeting organizer name or email.
+        start_time:
+          type: string
+          format: date-time
+          description: Meeting start time (ISO 8601).
+        end_time:
+          type: string
+          format: date-time
+          description: Meeting end time (ISO 8601).
+        attendee_count:
+          type: integer
+          minimum: 1
+          description: Number of expected attendees.
+        notes:
+          type: string
+          description: Optional meeting notes.
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        error:
+          type: string
+          description: Error code.
+        message:
+          type: string
+          description: Human-readable error message.
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+externalDocs:
+  description: Steelcase Tech Support
+  url: https://www.steelcase.com/techsupport/
