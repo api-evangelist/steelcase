@@ -1,0 +1,18 @@
+{
+  "provider": "steelcase",
+  "sources": [
+    "steelcase-bookings-api-openapi.yml",
+    "steelcase-rooms-api-openapi.yml",
+    "steelcase-status-api-openapi.yml"
+  ],
+  "outputs": [
+    "steelcase-bookings-api-openapi.yml",
+    "steelcase-rooms-api-openapi.yml",
+    "steelcase-status-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
