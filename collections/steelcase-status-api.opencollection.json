@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Steelcase RoomWizard Bookings Status API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Connector Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/api/status"
+          },
+          "docs": "Returns the health and connectivity status of the RoomWizard connector service and all registered devices."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

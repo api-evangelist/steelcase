@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Steelcase RoomWizard Bookings Rooms API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rooms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Room Availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/api/get_availability",
+            "params": [
+              {
+                "name": "room_id",
+                "value": "",
+                "type": "query",
+                "description": "Specific room ID to check. If omitted, returns all rooms."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the availability window (ISO 8601 format)."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the availability window (ISO 8601 format)."
+              }
+            ]
+          },
+          "docs": "Retrieves the availability status of one or more rooms for a given time range, showing free/busy slots and current occupancy."
+        },
+        {
+          "info": {
+            "name": "List Rooms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/api/get_rooms",
+            "params": [
+              {
+                "name": "building",
+                "value": "",
+                "type": "query",
+                "description": "Filter rooms by building name or ID."
+              },
+              {
+                "name": "floor",
+                "value": "",
+                "type": "query",
+                "description": "Filter rooms by floor."
+              },
+              {
+                "name": "min_capacity",
+                "value": "",
+                "type": "query",
+                "description": "Minimum room capacity required."
+              }
+            ]
+          },
+          "docs": "Returns a list of all conference rooms managed by the RoomWizard system including room names, capacity, equipment, and location."
+        },
+        {
+          "info": {
+            "name": "Get Room Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/api/get_room",
+            "params": [
+              {
+                "name": "room_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the room."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific RoomWizard-managed conference room including current status, capacity, and amenities."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

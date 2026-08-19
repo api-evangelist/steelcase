@@ -1,0 +1,146 @@
+{
+  "item": [
+    {
+      "id": "e2de7236-af13-442e-9784-d509a58da983",
+      "name": "Status",
+      "description": {
+        "content": "Monitor the connectivity and health status of RoomWizard devices and the connector service.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "febd6bfd-c5da-4334-acd7-015ba07838a2",
+          "name": "Get Connector Status",
+          "request": {
+            "name": "Get Connector Status",
+            "description": {
+              "content": "Returns the health and connectivity status of the RoomWizard connector service and all registered devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the RoomWizard connector server.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "Port of the RoomWizard connector server.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eaee3752-0445-4b7d-bb1d-ee9d6e5980d9",
+              "name": "Connector status information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Port of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"offline\",\n  \"calendar_connected\": false,\n  \"calendar_type\": \"string\",\n  \"device_count\": 3536,\n  \"devices_online\": 8126,\n  \"last_sync\": \"1983-08-28T22:42:33.663Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the RoomWizard connector server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "roomwizard.local",
+      "key": "host"
+    },
+    {
+      "description": {
+        "content": "Port of the RoomWizard connector server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "443",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}:{{port}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "02030094-0a30-4a0a-aee0-8a00c306dd6f",
+    "name": "Steelcase RoomWizard Bookings Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Steelcase RoomWizard API provides programmatic access to conference room scheduling and reservation management. Using HTTP GET and POST requests, developers can retrieve room bookings, create reservations, check room availability, and manage meeting information. The API supports integration with enterprise calendaring systems including Microsoft Exchange, Office 365, and Google Calendar via the RoomWizard connector. The API is hosted on the local network where the RoomWizard connector is installed.\n\nContact Support:\n Name: Steelcase Tech Support",
+      "type": "text/plain"
+    }
+  }
+}

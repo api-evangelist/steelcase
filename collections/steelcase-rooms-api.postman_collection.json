@@ -1,0 +1,528 @@
+{
+  "item": [
+    {
+      "id": "39ab0da5-5251-4c8c-be39-11bb6cfd8b0b",
+      "name": "Rooms",
+      "description": {
+        "content": "Retrieve room information including availability, capacity, and equipment details.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12faaaae-fe21-4475-a174-dd22c621f299",
+          "name": "Get Room Availability",
+          "request": {
+            "name": "Get Room Availability",
+            "description": {
+              "content": "Retrieves the availability status of one or more rooms for a given time range, showing free/busy slots and current occupancy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get_availability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "room_id",
+                  "value": "<string>",
+                  "description": "Specific room ID to check. If omitted, returns all rooms."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start of the availability window (ISO 8601 format)."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<dateTime>",
+                  "description": "(Required) End of the availability window (ISO 8601 format)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the RoomWizard connector server.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "Port of the RoomWizard connector server.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ee1fe48-85a2-4b0c-889a-d9b3f169dec5",
+              "name": "Room availability data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get_availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "room_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Port of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rooms\": [\n    {\n      \"room_id\": \"string\",\n      \"room_name\": \"string\",\n      \"is_available_now\": false,\n      \"next_available\": \"2019-03-05T00:17:56.961Z\",\n      \"busy_slots\": [\n        {\n          \"start_time\": \"1977-12-14T00:34:33.356Z\",\n          \"end_time\": \"1996-04-30T04:44:58.819Z\"\n        },\n        {\n          \"start_time\": \"1965-06-11T05:34:29.570Z\",\n          \"end_time\": \"1962-07-21T02:24:44.761Z\"\n        }\n      ]\n    },\n    {\n      \"room_id\": \"string\",\n      \"room_name\": \"string\",\n      \"is_available_now\": true,\n      \"next_available\": \"2010-10-06T05:01:10.072Z\",\n      \"busy_slots\": [\n        {\n          \"start_time\": \"2000-11-23T08:31:57.470Z\",\n          \"end_time\": \"1986-12-30T00:51:44.128Z\"\n        },\n        {\n          \"start_time\": \"2022-06-26T13:10:09.024Z\",\n          \"end_time\": \"2019-04-21T20:07:12.518Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70200938-be0c-47e1-ba0e-f731245debff",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get_availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "room_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Port of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c3d4118-3180-4880-a6fa-53df38e3797b",
+          "name": "List Rooms",
+          "request": {
+            "name": "List Rooms",
+            "description": {
+              "content": "Returns a list of all conference rooms managed by the RoomWizard system including room names, capacity, equipment, and location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get_rooms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "building",
+                  "value": "<string>",
+                  "description": "Filter rooms by building name or ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "floor",
+                  "value": "<string>",
+                  "description": "Filter rooms by floor."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_capacity",
+                  "value": "<integer>",
+                  "description": "Minimum room capacity required."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the RoomWizard connector server.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "Port of the RoomWizard connector server.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9df7e7ad-29e6-4e87-935f-59e16dedfa06",
+              "name": "List of rooms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get_rooms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "building",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "floor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_capacity",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Port of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rooms\": [\n    {\n      \"room_id\": \"string\",\n      \"name\": \"string\",\n      \"building\": \"string\",\n      \"floor\": \"string\",\n      \"capacity\": 2734,\n      \"is_available\": false,\n      \"equipment\": [\n        \"string\",\n        \"string\"\n      ],\n      \"email_address\": \"SuZb2iYs@KzEPLTvgQQeDiEaGGTTVdVACtPciW.pe\"\n    },\n    {\n      \"room_id\": \"string\",\n      \"name\": \"string\",\n      \"building\": \"string\",\n      \"floor\": \"string\",\n      \"capacity\": 9098,\n      \"is_available\": false,\n      \"equipment\": [\n        \"string\",\n        \"string\"\n      ],\n      \"email_address\": \"w8rNCySAL@lIQDnxQREereMApWDFMbh.pn\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8af05eaf-98a5-442b-aebd-3a8759917439",
+          "name": "Get Room Details",
+          "request": {
+            "name": "Get Room Details",
+            "description": {
+              "content": "Returns detailed information about a specific RoomWizard-managed conference room including current status, capacity, and amenities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get_room"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "room_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the room."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the RoomWizard connector server.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "Port of the RoomWizard connector server.",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4db925a-64bd-4578-b5e9-67e0d5b457bd",
+              "name": "Room details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get_room"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "room_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Port of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"room_id\": \"string\",\n  \"name\": \"string\",\n  \"building\": \"string\",\n  \"floor\": \"string\",\n  \"capacity\": 8721,\n  \"is_available\": false,\n  \"equipment\": [\n    \"string\",\n    \"string\"\n  ],\n  \"email_address\": \"uUqZkUJX@YGXnZErgvdesPWhEQBXAB.ii\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a64a3c0a-f8ad-42c0-8d66-22b6144610da",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get_room"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "room_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Port of the RoomWizard connector server.",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the RoomWizard connector server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "roomwizard.local",
+      "key": "host"
+    },
+    {
+      "description": {
+        "content": "Port of the RoomWizard connector server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "443",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}:{{port}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4564edda-b11f-4fd9-afad-96d32c88dcf8",
+    "name": "Steelcase RoomWizard Bookings Rooms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Steelcase RoomWizard API provides programmatic access to conference room scheduling and reservation management. Using HTTP GET and POST requests, developers can retrieve room bookings, create reservations, check room availability, and manage meeting information. The API supports integration with enterprise calendaring systems including Microsoft Exchange, Office 365, and Google Calendar via the RoomWizard connector. The API is hosted on the local network where the RoomWizard connector is installed.\n\nContact Support:\n Name: Steelcase Tech Support",
+      "type": "text/plain"
+    }
+  }
+}
