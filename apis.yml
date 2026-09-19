@@ -53,6 +53,8 @@ apis:
   humanURL: https://www.steelcase.com/products/scheduling-systems/roomwizard/
   baseURL: https://roomwizard.local/api
   tags:
+  - Booking
+  tags_raw:
   - Bookings
   properties:
   - type: OpenAPI
