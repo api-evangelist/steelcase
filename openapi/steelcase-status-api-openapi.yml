@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Steelcase RoomWizard Bookings Status API
-  description: The Steelcase RoomWizard API provides programmatic access to conference room scheduling and reservation management. Using HTTP GET and POST requests, developers can retrieve room bookings, create reservations, check room availability, and manage meeting information. The API supports integration with enterprise calendaring systems including Microsoft Exchange, Office 365, and Google Calendar via the RoomWizard connector. The API is hosted on the local network where the RoomWizard connector is installed.
+  title: Steelcase RoomWizard Status API
+  description: The Steelcase RoomWizard API provides programmatic access to conference room scheduling and reservation management.
   version: 1.0.0
   contact:
     name: Steelcase Tech Support

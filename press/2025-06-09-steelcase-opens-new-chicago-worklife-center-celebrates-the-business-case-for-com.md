@@ -2,7 +2,9 @@
 title: Steelcase Opens New Chicago WorkLife Center, Celebrates “The Business Case
   for Community” at Fulton Market Design Days
 url: https://www.steelcase.com/press-releases/steelcase-opens-new-chicago-worklife-center-celebrates-the-business-case-for-community-at-fulton-market-design-days/
-date: '2025-06-09'
+published: ''
+date_basis: harvested
+harvested: '2025-06-09'
 author: Mariangela Guzman
 feed_url: http://www.steelcase.com/press-releases/feed
 ---

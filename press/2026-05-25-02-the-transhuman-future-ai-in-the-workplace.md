@@ -1,7 +1,9 @@
 ---
 title: 'The Transhuman Future: AI in the Workplace'
 url: https://www.steelcase.com/asia-en/research/articles/topics/culture-talent/translating-transhuman-code/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Steelcase" press release artificial intelligence'
 position: 2
 source: serpapi-google

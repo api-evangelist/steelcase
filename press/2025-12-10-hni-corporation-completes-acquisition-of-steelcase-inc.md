@@ -1,7 +1,9 @@
 ---
 title: HNI Corporation Completes Acquisition of Steelcase Inc.
 url: https://www.steelcase.com/press-releases/hni-corporation-completes-acquisition-of-steelcase-inc/
-date: '2025-12-10'
+published: ''
+date_basis: harvested
+harvested: '2025-12-10'
 author: Monyka Cavazos
 feed_url: http://www.steelcase.com/press-releases/feed
 ---

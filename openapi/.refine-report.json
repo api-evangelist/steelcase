@@ -1,9 +1,7 @@
 {
   "provider": "steelcase",
   "sources": [
-    "steelcase-bookings-api-openapi.yml",
-    "steelcase-rooms-api-openapi.yml",
-    "steelcase-status-api-openapi.yml"
+    "_original/steelcase-roomwizard-api-openapi.yml"
   ],
   "outputs": [
     "steelcase-bookings-api-openapi.yml",
@@ -13,6 +11,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "steelcase-roomwizard-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "steelcase-bookings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "steelcase-rooms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "steelcase-status-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

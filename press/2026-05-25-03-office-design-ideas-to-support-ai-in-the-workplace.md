@@ -1,7 +1,9 @@
 ---
 title: Office Design Ideas to Support AI in the Workplace
 url: https://www.steelcase.com/research/articles/topics/learning/four-new-designs-for-ai-ready-workplaces/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Steelcase" press release artificial intelligence'
 position: 3
 source: serpapi-google

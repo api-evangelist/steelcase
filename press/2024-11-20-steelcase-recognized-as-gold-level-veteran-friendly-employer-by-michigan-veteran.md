@@ -2,7 +2,9 @@
 title: Steelcase Recognized as Gold-Level Veteran-Friendly Employer by Michigan Veterans
   Affairs Agency
 url: https://www.steelcase.com/press-releases/steelcase-recognized-as-gold-level-veteran-friendly-employer-by-michigan-veterans-affairs-agency/
-date: '2024-11-20'
+published: ''
+date_basis: harvested
+harvested: '2024-11-20'
 author: Gema Perez
 feed_url: http://www.steelcase.com/press-releases/feed
 ---

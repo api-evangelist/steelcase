@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Steelcase RoomWizard Bookings API
-  description: The Steelcase RoomWizard API provides programmatic access to conference room scheduling and reservation management. Using HTTP GET and POST requests, developers can retrieve room bookings, create reservations, check room availability, and manage meeting information. The API supports integration with enterprise calendaring systems including Microsoft Exchange, Office 365, and Google Calendar via the RoomWizard connector. The API is hosted on the local network where the RoomWizard connector is installed.
+  description: The Steelcase RoomWizard API provides programmatic access to conference room scheduling and reservation management.
   version: 1.0.0
   contact:
     name: Steelcase Tech Support
@@ -140,6 +140,49 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        error:
+          type: string
+          description: Error code.
+        message:
+          type: string
+          description: Human-readable error message.
+    BookingCreate:
+      type: object
+      required:
+      - room_id
+      - subject
+      - start_time
+      - end_time
+      description: Request body for creating a new booking.
+      properties:
+        room_id:
+          type: string
+          description: ID of the room to book.
+        subject:
+          type: string
+          description: Meeting subject/title.
+        organizer:
+          type: string
+          description: Meeting organizer name or email.
+        start_time:
+          type: string
+          format: date-time
+          description: Meeting start time (ISO 8601).
+        end_time:
+          type: string
+          format: date-time
+          description: Meeting end time (ISO 8601).
+        attendee_count:
+          type: integer
+          minimum: 1
+          description: Number of expected attendees.
+        notes:
+          type: string
+          description: Optional meeting notes.
     Booking:
       type: object
       description: A conference room booking.
@@ -190,52 +233,9 @@ components:
           type: string
           format: date-time
           description: Timestamp when the booking was created.
-    BookingCreate:
-      type: object
-      required:
-      - room_id
-      - subject
-      - start_time
-      - end_time
-      description: Request body for creating a new booking.
-      properties:
-        room_id:
-          type: string
-          description: ID of the room to book.
-        subject:
-          type: string
-          description: Meeting subject/title.
-        organizer:
-          type: string
-          description: Meeting organizer name or email.
-        start_time:
-          type: string
-          format: date-time
-          description: Meeting start time (ISO 8601).
-        end_time:
-          type: string
-          format: date-time
-          description: Meeting end time (ISO 8601).
-        attendee_count:
-          type: integer
-          minimum: 1
-          description: Number of expected attendees.
-        notes:
-          type: string
-          description: Optional meeting notes.
-    Error:
-      type: object
-      description: An error response.
-      properties:
-        error:
-          type: string
-          description: Error code.
-        message:
-          type: string
-          description: Human-readable error message.
   responses:
-    NotFound:
-      description: Resource not found
+    ServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
@@ -246,8 +246,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal server error
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:

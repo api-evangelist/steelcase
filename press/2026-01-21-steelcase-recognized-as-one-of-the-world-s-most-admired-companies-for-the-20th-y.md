@@ -2,7 +2,9 @@
 title: Steelcase Recognized as One of the World’s Most Admired Companies for the 20th
   Year
 url: https://www.steelcase.com/press-releases/steelcase-recognized-as-one-of-the-worlds-most-admired-companies-for-the-20th-year/
-date: '2026-01-21'
+published: ''
+date_basis: harvested
+harvested: '2026-01-21'
 author: Mariangela Guzman
 feed_url: http://www.steelcase.com/press-releases/feed
 ---

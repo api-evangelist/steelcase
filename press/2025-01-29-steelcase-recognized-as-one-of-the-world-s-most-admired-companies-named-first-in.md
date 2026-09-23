@@ -2,7 +2,9 @@
 title: Steelcase Recognized as One of the World’s Most Admired Companies, Named First
   in Home Equipment and Furnishings Category
 url: https://www.steelcase.com/press-releases/steelcase-recognized-as-one-of-the-worlds-most-admired-companies-named-first-in-home-equipment-and-furnishings-category/
-date: '2025-01-29'
+published: ''
+date_basis: harvested
+harvested: '2025-01-29'
 author: Mariangela Guzman
 feed_url: http://www.steelcase.com/press-releases/feed
 ---

@@ -1,7 +1,9 @@
 ---
 title: Steelcase Recognized as One of America’s 50 Most Community-Minded Companies
 url: https://www.steelcase.com/press-releases/steelcase-recognized-as-one-of-america-50-most-community-minded-companies/
-date: '2025-06-04'
+published: ''
+date_basis: harvested
+harvested: '2025-06-04'
 author: msilva
 feed_url: http://www.steelcase.com/press-releases/feed
 ---

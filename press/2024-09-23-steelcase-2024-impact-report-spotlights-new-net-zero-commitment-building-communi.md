@@ -2,7 +2,9 @@
 title: Steelcase 2024 Impact Report Spotlights New Net-Zero Commitment, Building Community
   and Belonging
 url: https://www.steelcase.com/press-releases/steelcase-2024-impact-report-spotlights-new-net-zero-commitment-building-community-and-belonging/
-date: '2024-09-23'
+published: ''
+date_basis: harvested
+harvested: '2024-09-23'
 author: Gema Perez
 feed_url: http://www.steelcase.com/press-releases/feed
 ---

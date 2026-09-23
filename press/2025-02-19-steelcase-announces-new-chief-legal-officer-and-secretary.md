@@ -1,7 +1,9 @@
 ---
 title: Steelcase Announces New Chief Legal Officer and Secretary
 url: https://www.steelcase.com/press-releases/steelcase-announces-new-chief-legal-officer-and-secretary/
-date: '2025-02-19'
+published: ''
+date_basis: harvested
+harvested: '2025-02-19'
 author: Mariangela Guzman
 feed_url: http://www.steelcase.com/press-releases/feed
 ---

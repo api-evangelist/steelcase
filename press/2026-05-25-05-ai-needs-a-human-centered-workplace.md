@@ -1,7 +1,9 @@
 ---
 title: AI Needs a Human-Centered Workplace
 url: https://www.steelcase.com/research/articles/topics/ai/ai-needs-a-human-centered-workplace/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Steelcase" press release artificial intelligence'
 position: 5
 source: serpapi-google
