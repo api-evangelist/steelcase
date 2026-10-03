@@ -127,6 +127,16 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        error:
+          type: string
+          description: Error code.
+        message:
+          type: string
+          description: Human-readable error message.
     RoomAvailability:
       type: object
       description: Availability information for a room during a time window.
@@ -187,16 +197,6 @@ components:
           type: string
           format: email
           description: Room calendar email address for direct calendar invites.
-    Error:
-      type: object
-      description: An error response.
-      properties:
-        error:
-          type: string
-          description: Error code.
-        message:
-          type: string
-          description: Human-readable error message.
   responses:
     NotFound:
       description: Resource not found

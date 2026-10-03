@@ -139,26 +139,50 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    ServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        error:
+          type: string
+          description: Error code.
+        message:
+          type: string
+          description: Human-readable error message.
+    BookingCreate:
+      type: object
+      required:
+      - room_id
+      - subject
+      - start_time
+      - end_time
+      description: Request body for creating a new booking.
+      properties:
+        room_id:
+          type: string
+          description: ID of the room to book.
+        subject:
+          type: string
+          description: Meeting subject/title.
+        organizer:
+          type: string
+          description: Meeting organizer name or email.
+        start_time:
+          type: string
+          format: date-time
+          description: Meeting start time (ISO 8601).
+        end_time:
+          type: string
+          format: date-time
+          description: Meeting end time (ISO 8601).
+        attendee_count:
+          type: integer
+          minimum: 1
+          description: Number of expected attendees.
+        notes:
+          type: string
+          description: Optional meeting notes.
     Booking:
       type: object
       description: A conference room booking.
@@ -209,49 +233,25 @@ components:
           type: string
           format: date-time
           description: Timestamp when the booking was created.
-    BookingCreate:
-      type: object
-      required:
-      - room_id
-      - subject
-      - start_time
-      - end_time
-      description: Request body for creating a new booking.
-      properties:
-        room_id:
-          type: string
-          description: ID of the room to book.
-        subject:
-          type: string
-          description: Meeting subject/title.
-        organizer:
-          type: string
-          description: Meeting organizer name or email.
-        start_time:
-          type: string
-          format: date-time
-          description: Meeting start time (ISO 8601).
-        end_time:
-          type: string
-          format: date-time
-          description: Meeting end time (ISO 8601).
-        attendee_count:
-          type: integer
-          minimum: 1
-          description: Number of expected attendees.
-        notes:
-          type: string
-          description: Optional meeting notes.
-    Error:
-      type: object
-      description: An error response.
-      properties:
-        error:
-          type: string
-          description: Error code.
-        message:
-          type: string
-          description: Human-readable error message.
+  responses:
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
 externalDocs:
   description: Steelcase Tech Support
   url: https://www.steelcase.com/techsupport/
