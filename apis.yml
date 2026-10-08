@@ -87,6 +87,12 @@ apis:
   - type: Documentation
     url: https://www.steelcase.com/techsupport/types/spec-guide/
 common:
+  - type: Plans
+    url: plans/steelcase-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/steelcase-rate-limits.yml
+  - type: FinOps
+    url: finops/steelcase-finops.yml
   - type: AgenticAccess
     url: agentic-access/steelcase-agentic-access.yml
   - type: DomainSecurity
