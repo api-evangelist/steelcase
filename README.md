@@ -1,4 +1,4 @@
-# Steelcase (steelcase)
+# Steelcase
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,68 +66,158 @@
 
 Steelcase is a global leader in the office furniture and workplace design industry, providing furniture, technology, and research-based insights to help organizations create effective work environments. Steelcase offers the RoomWizard API for integrating room scheduling and conference room reservation systems with enterprise calendaring platforms. The API enables developers to manage room bookings, retrieve availability, and synchronize reservations with Microsoft Exchange, Office 365, and Google Calendar.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/steelcase/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/steelcase/refs/heads/main/apis.yml)
+**Areas:** Office Furniture · Workplace · Room Scheduling · Facilities Management · IoT · Smart Office · Fortune 1000
 
-## Scope
+## Steelcase on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Steelcase is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/steelcase/](https://apis.io/providers/steelcase/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- Office Furniture
-- Workplace
-- Room Scheduling
-- Facilities Management
-- IoT
-- Smart Office
+- [Steelcase Bookings API](https://apis.io/apis/steelcase/steelcase-bookings-api/) — Manage conference room reservations including creating, retrieving, updating, and cancelling bookings.
+- [Steelcase Rooms API](https://apis.io/apis/steelcase/steelcase-rooms-api/) — Retrieve room information including availability, capacity, and equipment details.
+- [Steelcase Status API](https://apis.io/apis/steelcase/steelcase-status-api/) — Monitor the connectivity and health status of RoomWizard devices and the connector service.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-03-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Steelcase RoomWizard API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Steelcase RoomWizard API provides programmatic access to conference room scheduling and reservation management. Using HTTP GET and POST requests, developers can retrieve room bookings, create reservations, check room availability, and synchronize with enterprise calendaring systems including Microsoft Exchange, Office 365, and Google Calendar. The API returns XML-structured responses and supports webhook-style synchronization for keeping room status current.
+- [Steelcase Agentic Access](https://apis.io/agentic-access/steelcase/steelcase-agentic-access/)
 
-- **Human URL:** [https://www.steelcase.com/products/scheduling-systems/roomwizard/](https://www.steelcase.com/products/scheduling-systems/roomwizard/)
-- **Base URL:** `https://roomwizard.local/api`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Room Scheduling
-- Conference Rooms
-- Calendaring
-- Facilities Management
-- Workplace
+- [Steelcase Room Booking](https://apis.io/schemas/steelcase/steelcase-booking/)
+- [Steelcase Room](https://apis.io/schemas/steelcase/steelcase-room/)
 
-#### Properties
+#### JSON Structure (2)
 
-- [Documentation](https://www.steelcase.com/techsupport/types/spec-guide/)
-- [OpenAPI](openapi/steelcase-roomwizard-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/steelcase-roomwizard-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/steelcase-roomwizard-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Steelcase Booking Structure](https://apis.io/json-structure/steelcase/steelcase-booking-structure/)
+- [Steelcase Room Structure](https://apis.io/json-structure/steelcase/steelcase-room-structure/)
 
-- [LinkedIn](https://www.linkedin.com/company/steelcase)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Steelcase Context](https://apis.io/jsonld/steelcase/steelcase-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Steelcase Vocabulary](https://apis.io/vocabularies/steelcase/steelcase-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Steelcase Create Booking Example](https://apis.io/examples/steelcase/steelcase-create-booking-example/)
+- [Steelcase Get Bookings Example](https://apis.io/examples/steelcase/steelcase-get-bookings-example/)
+- [Steelcase Get Room Availability Example](https://apis.io/examples/steelcase/steelcase-get-room-availability-example/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Steelcase RoomWizard Bookings API](https://apis.io/collections/steelcase/open-steelcase-bookings-api/)
+- [Steelcase RoomWizard Bookings Rooms API](https://apis.io/collections/steelcase/open-steelcase-rooms-api/)
+- [Steelcase RoomWizard API](https://apis.io/collections/steelcase/open-steelcase-roomwizard-api/)
+- [Steelcase RoomWizard Bookings Status API](https://apis.io/collections/steelcase/open-steelcase-status-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Steelcase — jsonschema rules](https://apis.io/rules/steelcase/steelcase-jsonschema-spectral-rules/)
+- [Steelcase API Rules](https://apis.io/rules/steelcase/steelcase-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Steelcase Domain Security](https://apis.io/security/steelcase/steelcase-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Steelcase Plans Pricing](https://apis.io/plans/steelcase/steelcase-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Steelcase Rate Limits](https://apis.io/rate-limits/steelcase/steelcase-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Steelcase Finops](https://apis.io/finops/steelcase/steelcase-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.steelcase.com)
-- [Tech Support](https://www.steelcase.com/techsupport/)
-- [Downloads](https://www.steelcase.com/techsupport/downloads/)
-- [JSON Schema](json-schema/steelcase-booking-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/steelcase-room-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/steelcase-booking-structure.json)
-- [JSON Structure](json-structure/steelcase-room-structure.json)
-- [JSON-LD](json-ld/steelcase-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/steelcase-rules.yml)
-- [Vocabulary](vocabulary/steelcase-vocabulary.yml)
-- [Integrations](https://www.steelcase.com/marketplace/)
+- [Blog](https://www.steelcase.com/feed/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.7** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 48.7 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/steelcase/](https://apis.io/providers/steelcase/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Steelcase: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/steelcase/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
